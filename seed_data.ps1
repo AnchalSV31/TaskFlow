@@ -1,5 +1,5 @@
 ## ─── Config ───────────────────────────────────────────────────────────────
-$BASE = "http://localhost:8080/api"
+$BASE = "https://taskflow-production-c28b.up.railway.app/api"
 
 function Post($url, $body, $token=$null) {
     $h = @{ "Content-Type" = "application/json" }
