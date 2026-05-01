@@ -1,6 +1,6 @@
 async function test() {
   try {
-    const loginRes = await fetch('http://localhost:8080/api/auth/login', {
+    const loginRes = await fetch("https://taskflow-production-c28b.up.railway.app/api/auth/login", {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -11,13 +11,13 @@ async function test() {
     const loginData = await loginRes.json();
     const token = loginData.data.accessToken;
 
-    const projRes = await fetch('http://localhost:8080/api/projects', {
+    const projRes = await fetch("https://taskflow-production-c28b.up.railway.app/api/projects", {
       headers: { 'Authorization': `Bearer ${token}` }
     });
     const projData = await projRes.json();
     console.log("Projects:", JSON.stringify(projData, null, 2));
 
-    const dashRes = await fetch('http://localhost:8080/api/dashboard', {
+    const dashRes = await fetch("https://taskflow-production-c28b.up.railway.app/api/dashboard", {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       const dashData = await dashRes.json();

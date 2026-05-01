@@ -9,6 +9,6 @@ server:
   port: ${PORT:8080}
 
 jwt:
-  secret: ${JWT_SECRET}
+  secret: ${JWT_SECRET:mysecret123}
   access-token-expiry: 3600000
   refresh-token-expiry: 604800000
