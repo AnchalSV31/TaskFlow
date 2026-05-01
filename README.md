@@ -13,7 +13,6 @@ A full-stack **Team Task Manager** built with **Spring Boot 3** and **React.js**
 | Spring Security + JWT | Stateless authentication & authorization |
 | Spring Data JPA + Hibernate | ORM & database access |
 | MySQL 8 | Relational database |
-| Flyway | Database schema migrations |
 | Lombok | Boilerplate reduction |
 | SpringDoc / Swagger UI | API documentation |
 | Maven | Build tool |
@@ -23,13 +22,10 @@ A full-stack **Team Task Manager** built with **Spring Boot 3** and **React.js**
 |---|---|
 | React.js 18 | UI framework |
 | Vite | Dev server & bundler |
-| TanStack Query (React Query) | Server state, caching & cache invalidation |
 | React Router v6 | Client-side routing |
 | Axios | HTTP client with JWT interceptors |
-| Zustand | Auth state management |
 | Tailwind CSS | Utility-first styling |
-| Lucide React | Icon library |
-| React Hot Toast | Notifications |
+
 
 ---
 
@@ -171,61 +167,10 @@ The frontend starts on **http://localhost:5173**.
 | **Admin** | admin@test.com | Admin@123 |
 | Member | alice@test.com | Member@123 |
 | Member | bob@test.com | Member@123 |
-| Member | carol@test.com | Member@123 |
-| Member | david@test.com | Member@123 |
-| Member | eva@test.com | Member@123 |
-| Member | frank@test.com | Member@123 |
-| Member | grace@test.com | Member@123 |
+
 
 ---
 
-## 🔌 API Reference
-
-Base URL: `http://localhost:8080/api`
-
-Interactive docs available at: **http://localhost:8080/swagger-ui.html**
-
-### Auth
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| POST | `/auth/signup` | Register a new user |
-| POST | `/auth/login` | Login, returns access + refresh tokens |
-| POST | `/auth/refresh` | Refresh access token |
-| POST | `/auth/logout` | Invalidate refresh token |
-
-### Users
-| Method | Endpoint | Auth | Description |
-|--------|----------|------|-------------|
-| GET | `/users/me` | Any | Get current user profile |
-| PUT | `/users/me` | Any | Update name/email |
-| GET | `/users` | ADMIN | List all users (paginated) |
-
-### Projects
-| Method | Endpoint | Auth | Description |
-|--------|----------|------|-------------|
-| GET | `/projects` | Any | List projects (own for members, all for admin) |
-| POST | `/projects` | Any | Create a new project |
-| GET | `/projects/:id` | Member | Get project details & members |
-| PUT | `/projects/:id` | Owner/Admin | Update project |
-| POST | `/projects/:id/members` | Admin | Add a member |
-| DELETE | `/projects/:id/members/:userId` | Admin | Remove a member |
-
-### Tasks
-| Method | Endpoint | Auth | Description |
-|--------|----------|------|-------------|
-| GET | `/projects/:id/tasks` | Member | List tasks (filterable) |
-| POST | `/projects/:id/tasks` | Member | Create a task |
-| GET | `/tasks/:id` | Member | Get task detail |
-| PUT | `/tasks/:id` | Assignee/Admin | Update task |
-| PATCH | `/tasks/:id/status` | Assignee/Admin | Update task status only |
-| DELETE | `/tasks/:id` | Admin | Delete a task |
-
-### Dashboard
-| Method | Endpoint | Auth | Description |
-|--------|----------|------|-------------|
-| GET | `/dashboard` | Any | Role-aware dashboard data |
-
----
 
 ## 🗄️ Database Schema
 
@@ -236,7 +181,6 @@ project_members — project_id, user_id  (join table)
 tasks           — id, title, description, status, priority, due_date,
                   project_id, assignee_id, created_by_id, created_at, updated_at
 refresh_tokens  — id, token, user_id, expiry_date
-flyway_schema_history — migration tracking
 ```
 
 ---
@@ -278,10 +222,7 @@ spring:
 - Passwords are hashed with **BCrypt**
 - JWT secret should be replaced with a strong random value in production
 - CORS is configured for `http://localhost:5173` — update for production domains
-- The `.env` file is gitignored — never commit DB credentials
 
 ---
 
-## 📄 License
 
-This project is for educational and portfolio purposes.
